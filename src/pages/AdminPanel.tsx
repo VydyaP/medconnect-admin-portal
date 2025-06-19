@@ -2,127 +2,104 @@
 import React, { useState } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Users, UserPlus, Calendar, Settings, BarChart3, Shield } from 'lucide-react';
-import DoctorsManagement from '@/components/admin/DoctorsManagement';
+import { Users, Calendar, MessageSquare, UserCheck, BarChart, FileText, Settings, HeadphonesIcon } from 'lucide-react';
+
+// Import admin components
+import AdminStats from '@/components/admin/AdminStats';
 import UsersManagement from '@/components/admin/UsersManagement';
 import AppointmentsManagement from '@/components/admin/AppointmentsManagement';
-import AdminStats from '@/components/admin/AdminStats';
+import DoctorsManagement from '@/components/admin/DoctorsManagement';
 import AdminSettings from '@/components/admin/AdminSettings';
+import ChatLogsManagement from '@/components/admin/ChatLogsManagement';
+import SystemAnalytics from '@/components/admin/SystemAnalytics';
+import ContentManagement from '@/components/admin/ContentManagement';
+import SupportTickets from '@/components/admin/SupportTickets';
 
 const AdminPanel = () => {
   const [activeTab, setActiveTab] = useState('dashboard');
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <div className="bg-white border-b">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-16">
-            <div className="flex items-center">
-              <Shield className="h-8 w-8 text-blue-600 mr-3" />
-              <h1 className="text-2xl font-bold text-gray-900">Admin Panel</h1>
-            </div>
-            <div className="text-sm text-gray-500">
-              Healthcare Management System
-            </div>
-          </div>
+      <div className="container mx-auto px-4 py-8">
+        <div className="mb-8">
+          <h1 className="text-3xl font-bold text-gray-900">Admin Panel</h1>
+          <p className="text-gray-600 mt-2">Manage your healthcare platform</p>
         </div>
-      </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-6">
-          <TabsList className="grid w-full grid-cols-5 lg:w-fit lg:grid-cols-5">
+          <TabsList className="grid w-full grid-cols-4 lg:grid-cols-9">
             <TabsTrigger value="dashboard" className="flex items-center gap-2">
-              <BarChart3 className="h-4 w-4" />
-              Dashboard
-            </TabsTrigger>
-            <TabsTrigger value="doctors" className="flex items-center gap-2">
-              <UserPlus className="h-4 w-4" />
-              Doctors
+              <BarChart className="h-4 w-4" />
+              <span className="hidden sm:inline">Dashboard</span>
             </TabsTrigger>
             <TabsTrigger value="users" className="flex items-center gap-2">
               <Users className="h-4 w-4" />
-              Users
+              <span className="hidden sm:inline">Users</span>
             </TabsTrigger>
             <TabsTrigger value="appointments" className="flex items-center gap-2">
               <Calendar className="h-4 w-4" />
-              Appointments
+              <span className="hidden sm:inline">Appointments</span>
+            </TabsTrigger>
+            <TabsTrigger value="doctors" className="flex items-center gap-2">
+              <UserCheck className="h-4 w-4" />
+              <span className="hidden sm:inline">Doctors</span>
+            </TabsTrigger>
+            <TabsTrigger value="chatlogs" className="flex items-center gap-2">
+              <MessageSquare className="h-4 w-4" />
+              <span className="hidden sm:inline">Chat Logs</span>
+            </TabsTrigger>
+            <TabsTrigger value="analytics" className="flex items-center gap-2">
+              <BarChart className="h-4 w-4" />
+              <span className="hidden sm:inline">Analytics</span>
+            </TabsTrigger>
+            <TabsTrigger value="content" className="flex items-center gap-2">
+              <FileText className="h-4 w-4" />
+              <span className="hidden sm:inline">Content</span>
+            </TabsTrigger>
+            <TabsTrigger value="support" className="flex items-center gap-2">
+              <HeadphonesIcon className="h-4 w-4" />
+              <span className="hidden sm:inline">Support</span>
             </TabsTrigger>
             <TabsTrigger value="settings" className="flex items-center gap-2">
               <Settings className="h-4 w-4" />
-              Settings
+              <span className="hidden sm:inline">Settings</span>
             </TabsTrigger>
           </TabsList>
 
-          <TabsContent value="dashboard" className="space-y-6">
+          <TabsContent value="dashboard">
             <AdminStats />
           </TabsContent>
 
-          <TabsContent value="doctors" className="space-y-6">
-            <Card>
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2">
-                  <UserPlus className="h-5 w-5" />
-                  Doctors Management
-                </CardTitle>
-                <CardDescription>
-                  Manage healthcare professionals, verify credentials, and monitor performance.
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <DoctorsManagement />
-              </CardContent>
-            </Card>
+          <TabsContent value="users">
+            <UsersManagement />
           </TabsContent>
 
-          <TabsContent value="users" className="space-y-6">
-            <Card>
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2">
-                  <Users className="h-5 w-5" />
-                  Users Management
-                </CardTitle>
-                <CardDescription>
-                  Manage patient accounts, monitor activity, and handle support requests.
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <UsersManagement />
-              </CardContent>
-            </Card>
+          <TabsContent value="appointments">
+            <AppointmentsManagement />
           </TabsContent>
 
-          <TabsContent value="appointments" className="space-y-6">
-            <Card>
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2">
-                  <Calendar className="h-5 w-5" />
-                  Appointments Management
-                </CardTitle>
-                <CardDescription>
-                  Monitor appointments, resolve conflicts, and manage scheduling.
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <AppointmentsManagement />
-              </CardContent>
-            </Card>
+          <TabsContent value="doctors">
+            <DoctorsManagement />
           </TabsContent>
 
-          <TabsContent value="settings" className="space-y-6">
-            <Card>
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2">
-                  <Settings className="h-5 w-5" />
-                  System Settings
-                </CardTitle>
-                <CardDescription>
-                  Configure platform settings, pricing, and system preferences.
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <AdminSettings />
-              </CardContent>
-            </Card>
+          <TabsContent value="chatlogs">
+            <ChatLogsManagement />
+          </TabsContent>
+
+          <TabsContent value="analytics">
+            <SystemAnalytics />
+          </TabsContent>
+
+          <TabsContent value="content">
+            <ContentManagement />
+          </TabsContent>
+
+          <TabsContent value="support">
+            <SupportTickets />
+          </TabsContent>
+
+          <TabsContent value="settings">
+            <AdminSettings />
           </TabsContent>
         </Tabs>
       </div>
